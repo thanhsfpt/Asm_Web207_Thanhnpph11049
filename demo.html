@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body ng-app="myApp">
+    <div ng-controller="info">
+      <h1>{{name}}</h1>
+      <h1>{{Age}}</h1>
+      <h1>Quê quán : {{info.Address}}</h1>
+      <h1>Tình trạng: {{info.isMarried ? 'Đã kết hôn' : 'Chưa kết hôn'}}</h1>
+      <p>{{info.run()}}</p>
+      <hr />
+      <button ng-click="click()">click</button>
+      <h1>{{count}}</h1>
+      {{myName}}
+      <h1 ng-bind="myName"></h1>
+      <input type="text" ng-model="myName" />
+      <button ng-click="showname()">Showname</button>
+      {{greeting}}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      const app = angular.module("myApp", []);
+      app.controller("info", function ($scope) {
+        $scope.myName = "Hello";
+        $scope.name = "ThanhNP";
+        $scope.Age = "21";
+        $scope.info = {
+          Address: "Hà Nội",
+          isMarried: true,
+          run: function () {
+            console.log("runing");
+          },
+        };
+        $scope.count = 0;
+        $scope.click = function () {
+          $scope.count++;
+        };
+        $scope.greeting = "";
+        $scope.showname = function () {
+          $scope.greeting = `Hello ${$scope.myName}`;
+        };
+      });
+    </script>
+  </body>
+</html>
