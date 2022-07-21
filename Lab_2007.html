@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body ng-app="lab1">
+    <div ng-controller="student" class="container">
+      <!-- b1 -->
+      <div class="b1">
+        <h1>Bài 1</h1>
+        <img
+          src="./upload/{{image}}"
+          alt=""
+          width="100px"
+          height="100px"
+          class="img-fluid"
+        />
+        <p>Họ và tên : {{fullname}}</p>
+        <p>Ngày sinh : {{data}}</p>
+        <p>Giới tính : {{gender}}</p>
+        <p>Điểm trung bình : {{toal}}</p>
+      </div>
+      <!-- b2 -->
+      <div class="b2">
+        <h1>Bài2</h1>
+        <img
+          src="./upload/{{student.image}}"
+          alt=""
+          width="100px"
+          height="100px"
+          class="img-fluid"
+        />
+        <p>Họ và tên : {{student.fullname}}</p>
+        <p>Ngày sinh : {{student.data}}</p>
+        <p>Giới tính : {{student.gender}}</p>
+        <p>Điểm trung bình : {{student.toal}}</p>
+      </div>
+      <!-- b3 -->
+      <div class="b3">
+        <h1>Bài 3</h1>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Họ và tên</th>
+              <th scope="col">Ngày sinh</th>
+              <th scope="col">Giới tính</th>
+              <th scope="col">Điểm</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">
+                <img
+                  src="./upload/{{student[0].image}}"
+                  alt=""
+                  width="100px"
+                  height="100px"
+                />
+              </th>
+              <td>{{student[0].fullname}}</td>
+              <td>{{student[0].data}}</td>
+              <td>{{student[0].gender}}</td>
+              <td>{{student[0].toal}}</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <img
+                  src="./upload/{{student[1].image}}"
+                  alt=""
+                  width="100px"
+                  height="100px"
+                />
+              </th>
+              <td>{{student[1].fullname}}</td>
+              <td>{{student[1].data}}</td>
+              <td>{{student[1].gender}}</td>
+              <td>{{student[1].toal}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- b4 -->
+      <div class="b4">
+        <h1>Bài 4</h1>
+        <form action="">
+          Chiều dài :
+          <input type="text" ng-model="cd" class="form-control" /><br />
+          Chiều rộng : <input type="text" ng-model="cr" class="form-control" />
+          <br />
+          Diện tích :
+          <label ng-bind="dt"></label>
+          chu vi :
+          <label ng-bind="cv"></label><br />
+          <button type="button" ng-click="tinh()">Tính</button>
+        </form>
+      </div>
+      <!-- b5 -->
+      <div class="b5">
+        <form action="">
+          Họ và tên:
+          <input
+            type="text"
+            ng-model="student.name"
+            class="form-control"
+          /><br />
+          Ngày sinh :
+          <input type="text" ng-model="student.ns" class="form-control" /><br />
+          Điểm :
+          <input
+            type="text"
+            ng-model="student.mark"
+            class="form-control"
+          /><br />
+          Giới tính :
+          <select ng-model="student.gt" class="form-control">
+            <option value="">nam</option>
+            <option value="">nữ</option></select
+          ><br />
+
+          <button type="button" ng-click="submit()">Submit</button>
+        </form>
+        <p>Họ và tên{{student.name}}</p>
+        <p>Ngày Sinh{{student.ns}}</p>
+        <p>Giới tính{{student.gt}}</p>
+        <p>Điểm{{student.mark}}</p>
+        Kết quả :
+        <p ng-bind="student.hl"></p>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      const app = angular.module("lab1", []);
+      app.controller("student", function ($scope) {
+        $scope.image = "1.png";
+        $scope.fullname = "Nguyễn Phúc Thành";
+        $scope.data = "23/08/2001";
+        $scope.gender = "Nam";
+        $scope.toal = "7.9";
+        // $scope.student = {
+        //   image: "1.png",
+        //   fullname: "Nguyễn Phúc Thành2",
+        //   data: "23/08/2001",
+        //   gender: "Nam",
+        //   toal: "7.9",
+        // };
+        $scope.student = [
+          {
+            image: "1.png",
+            fullname: "Nguyễn Phúc Thành 1",
+            data: "24/08/2001",
+            gender: "Nam",
+            toal: "7.9",
+          },
+          {
+            image: "1.png",
+            fullname: "Nguyễn Phúc Thành 2",
+            data: "23/08/2001",
+            gender: "Nam",
+            toal: "8",
+          },
+        ];
+        $scope.tinh = function () {
+          var a = parseFloat($scope.cd);
+          var b = parseFloat($scope.cr);
+          $scope.dt = a * b;
+          $scope.cv = (a + b) * 2;
+        };
+        $scope.submit = function () {
+          var infomation = parseFloat($scope.student.mark);
+          if (infomation < 5) {
+            $scope.student.hl = "Trượt";
+          } else {
+            $scope.student.hl = "Đỗ";
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
